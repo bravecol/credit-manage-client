@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Container,
   FormControl,
   FormHelperText,
@@ -52,10 +53,24 @@ export const Upload: React.FC = () => {
     },
   ];
 
-  const [age, setAge] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+  const handleChange = (event: SelectChangeEvent): void => {
+    setCardName(event.target.value);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    // ファイルアップロード時のテキストボックス変更
+    if (e.target?.files) {
+      console.log(e.target?.files[0]);
+    }
+
+    // setSelectedFile(e.target?.files[0]);
+  };
+
+  const handleUploadClick = (): void => {
+    // アップロード処理
   };
 
   return (
@@ -63,25 +78,57 @@ export const Upload: React.FC = () => {
       <Typography variant="h2">明細アップロード画面</Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {/* アップロード条件設定 */}
-        <Box sx={{ width: '100%' }}>
-          <FormControl required sx={{ m: 1, minWidth: 150 }}>
+        <Box m={2} sx={{ width: '100%' }}>
+          <FormControl required sx={{ minWidth: 150 }} size="small">
             <InputLabel id="card-name">カード名</InputLabel>
             <Select
               labelId="card-name"
               id="select-card-name"
-              value={age}
-              label="Age *"
+              value={cardName}
+              label="カード名 *"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={10}>JQセゾンカード</MenuItem>
+              <MenuItem value={20}>au Payカード</MenuItem>
+              <MenuItem value={30}>JCBカード</MenuItem>
             </Select>
             <FormHelperText>カード会社選択</FormHelperText>
           </FormControl>
-        </Box>
-        {/* アップロードファイル詳細 */}
 
+          <Button variant="contained" sx={{ marginLeft: 1 }} onClick={handleUploadClick}>
+            アップロード
+          </Button>
+          <Box sx={{ textAlign: 'center', mt: 4 }}>
+            <input
+              accept="image/*"
+              style={{ display: 'none' }}
+              id="raised-button-file"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="raised-button-file">
+              <Button variant="contained" component="span">
+                ファイルを選択
+              </Button>
+            </label>
+            {selectedFile && (
+              <Typography variant="body1" sx={{ mt: 2 }}>
+                選択されたファイル: {selectedFile}
+              </Typography>
+            )}
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ mt: 2 }}
+              onClick={handleUploadClick}
+              disabled={!selectedFile}
+            >
+              アップロード
+            </Button>
+          </Box>
+        </Box>
+
+        {/* アップロードファイル詳細 */}
         <Box sx={{ width: '100%' }}>
           <CustomDataGrid columns={columns}></CustomDataGrid>
         </Box>
