@@ -1,21 +1,20 @@
 import styled from '@emotion/styled';
 import { Box, Button, Typography } from '@mui/material';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { doGet } from '../../lib/httpRequest';
 
 export const Top: React.FC = () => {
   const onClickLogin = () => {
+    const success = (res: AxiosResponse): void => {
+      console.log(res);
+    };
+    const mockRes = {
+      name: 'name',
+      id: 1,
+      address: 'ggg.@gmail.com',
+    };
     // ログイン画面へ
-    axios({
-      method: 'get',
-      url: 'http://localhost:8080/login',
-      data: {},
-    })
-      .then((res: AxiosResponse) => {
-        console.log(res);
-      })
-      .catch((error: AxiosError) => {
-        console.log(error);
-      });
+    doGet('/login', success, mockRes);
   };
 
   return (
