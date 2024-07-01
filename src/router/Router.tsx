@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Top } from '../components/pages/Top';
-import { Users } from '../components/pages/Users';
+// import { Users } from '../components/pages/Users';
 import { DefaultLayout } from '../components/templates/DefaultLayout';
 import { HeaderOnly } from '../components/templates/HeaderOnly';
 import { Box } from '@mui/material';
@@ -63,14 +63,6 @@ export const Router: React.FC = () => {
             <HeaderOnly>
               {/* TODO:実装予定 */}
               <Box>支払日設定画面</Box>
-            </HeaderOnly>
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <HeaderOnly>
-              <Users />
             </HeaderOnly>
           }
         />

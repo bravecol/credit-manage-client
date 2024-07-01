@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
 };
 
 const SHeader = styled.header`
-  background-color: #4466ce;
+  background-color: #81a0ff;
   color: #fff;
   text-align: center;
   padding: 8px 0;

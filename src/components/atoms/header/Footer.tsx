@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
 };
 
 const SFooter = styled.footer`
-  background-color: #4466ce;
+  background-color: #81a0ff;
   color: #fff;
   text-align: center;
   padding: 8px 0;

@@ -1,15 +1,21 @@
 import styled from '@emotion/styled';
 import { Box, Button, Typography } from '@mui/material';
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export const Top: React.FC = () => {
   const onClickLogin = () => {
     // ログイン画面へ
     axios({
       method: 'get',
-      url: '/login',
+      url: 'http://localhost:8080/login',
       data: {},
-    });
+    })
+      .then((res: AxiosResponse) => {
+        console.log(res);
+      })
+      .catch((error: AxiosError) => {
+        console.log(error);
+      });
   };
 
   return (
