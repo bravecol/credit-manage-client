@@ -1,20 +1,31 @@
 import styled from '@emotion/styled';
 import { Box, Button, Typography } from '@mui/material';
 import { AxiosResponse } from 'axios';
-import { doGet } from '../../lib/httpRequest';
+import { doPost } from '../../lib/httpRequest';
 
 export const Top: React.FC = () => {
   const onClickLogin = () => {
     const success = (res: AxiosResponse): void => {
       console.log(res);
     };
-    const mockRes = {
-      name: 'name',
-      id: 1,
-      address: 'ggg.@gmail.com',
+    const data = {
+      loginId: 'manage',
+      password: 'passmanage',
     };
     // ログイン画面へ
-    doGet('/login', success, mockRes);
+    doPost('/login', data, success);
+  };
+
+  const onClickManage = () => {
+    const success = (res: AxiosResponse): void => {
+      console.log(res);
+    };
+    const data = {
+      id: 1,
+      dueDate: new Date(),
+    };
+    // 検索処理
+    doPost('/manage/search', data, success);
   };
 
   return (
@@ -35,6 +46,7 @@ export const Top: React.FC = () => {
         </ul>
       </Box>
       <Button onClick={onClickLogin}>ログイン</Button>
+      <Button onClick={onClickManage}>検索</Button>
     </SContainer>
   );
 };

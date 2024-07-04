@@ -2,8 +2,8 @@ import axios, { AxiosError, AxiosHeaders, AxiosRequestConfig, AxiosResponse } fr
 
 // サーバー通信時の共通設定定義
 const api = axios.create({
-  baseURL: 'http://localhost:8080', // ベースURLを指定
-  timeout: 10000, // ミリ秒指定=10秒
+  baseURL: 'http://localhost:8080/api', // ベースURLを指定
+  timeout: 30000, // ミリ秒指定=30秒
   headers: { 'Content-Type': 'application/json' },
 });
 
