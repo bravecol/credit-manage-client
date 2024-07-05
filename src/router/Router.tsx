@@ -5,6 +5,7 @@ import { DefaultLayout } from '../components/templates/DefaultLayout';
 import { HeaderOnly } from '../components/templates/HeaderOnly';
 import { Box } from '@mui/material';
 import { Upload } from '../components/pages/Upload';
+import { Manage } from '../components/pages/Manage';
 
 /**
  * ルーティング(画面遷移)設定
@@ -32,11 +33,10 @@ export const Router: React.FC = () => {
           }
         />
         <Route
-          path="/search"
+          path="/manage"
           element={
             <HeaderOnly>
-              {/* TODO:実装予定 */}
-              <Box>検索画面</Box>
+              <Manage />
             </HeaderOnly>
           }
         />

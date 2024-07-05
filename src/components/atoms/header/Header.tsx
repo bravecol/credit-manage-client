@@ -5,7 +5,8 @@ export const Header: React.FC = () => {
   return (
     <SHeader>
       <SLink to="/">HOME</SLink>
-      <SLink to="/users">USERS</SLink>
+      <SLink to="/upload">UPLOAD</SLink>
+      <SLink to="/manage">MANAGE</SLink>
     </SHeader>
   );
 };
