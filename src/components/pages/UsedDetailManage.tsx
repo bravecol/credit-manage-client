@@ -15,12 +15,36 @@ import { useState } from 'react';
 import { CustomDataGrid } from '../atoms/grid/CustomDataGrid';
 import { AxiosResponse } from 'axios';
 import { doPost } from '../../lib/httpRequest';
+import { CardName } from '../atoms/select/CardName';
+import DateRangePicker from '../molcules/date/DateRangePicker';
+
+/**
+ * 利用明細管理検索条件
+ */
+interface ManageSearchCondition {
+  /** カード名 */
+  cardName: string;
+  /** 利用日(from) */
+  useStartDate: string;
+  /** 利用日(To) */
+  useEndDate: string;
+  /** 利用先 */
+  useTarget: string;
+  /** 金額 */
+  price: number;
+  /** カテゴリ */
+  category: number;
+  /** 支払日(from) */
+  dueStartDate: string;
+  /** 支払日(To) */
+  dueEndDate: string;
+}
 
 /**
  * 明細管理画面
  * @author col
  */
-export const Manage: React.FC = () => {
+export const UsedDetailManage: React.FC = () => {
   const columns: GridColDef[] = [
     // チェックボックス
     {
@@ -56,7 +80,7 @@ export const Manage: React.FC = () => {
   ];
 
   const [cardName, setCardName] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [searchCondition, setSearchCondition] = useState<ManageSearchCondition>();
 
   const handleChange = (event: SelectChangeEvent): void => {
     setCardName(event.target.value);
@@ -75,6 +99,7 @@ export const Manage: React.FC = () => {
     // 検索処理
     doPost('/manage/search', data, onSearchComplete);
   };
+
   // リセット処理
   const handleReset = (): void => {};
 
@@ -86,21 +111,9 @@ export const Manage: React.FC = () => {
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {/* 明細一覧検索条件 */}
         <Box m={2} sx={{ width: '100%' }}>
-          <FormControl required sx={{ minWidth: 150 }} size="small">
-            <InputLabel id="card-name">カード名</InputLabel>
-            <Select
-              labelId="card-name"
-              id="select-card-name"
-              value={cardName}
-              label="カード名 *"
-              onChange={handleChange}
-            >
-              <MenuItem value={10}>JQセゾンカード</MenuItem>
-              <MenuItem value={20}>au Payカード</MenuItem>
-              <MenuItem value={30}>JCBカード</MenuItem>
-            </Select>
-            <FormHelperText>カード会社選択</FormHelperText>
-          </FormControl>
+          <CardName required />
+          <DateRangePicker />
+
           <Box sx={{ textAlign: 'center', mt: 4 }}>
             <Button variant="contained" component="span" sx={{ m: 1 }} onClick={handleSearch}>
               検索
