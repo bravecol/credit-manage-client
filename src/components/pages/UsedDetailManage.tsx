@@ -103,6 +103,18 @@ export const UsedDetailManage: React.FC = () => {
   // リセット処理
   const handleReset = (): void => {};
 
+  const [startDate, setStartDate] = useState<Date | undefined>(undefined);
+  const [endDate, setEndDate] = useState<Date | undefined>(undefined);
+  // 日付入力イベント
+  const handleChangeDate = (event: Date, name?: string) => {
+    console.log(name);
+    if (name === 'startDate') {
+      setStartDate(event);
+    } else if (name === 'endDate') {
+      setEndDate(event);
+    }
+  };
+
   return (
     <Container component="main">
       <Typography variant="h2" align="center">
@@ -112,7 +124,11 @@ export const UsedDetailManage: React.FC = () => {
         {/* 明細一覧検索条件 */}
         <Box m={2} sx={{ width: '100%' }}>
           <CardName required />
-          <DateRangePicker />
+          <DateRangePicker
+            startDate={startDate}
+            endDate={endDate}
+            onChangeDate={handleChangeDate}
+          />
 
           <Box sx={{ textAlign: 'center', mt: 4 }}>
             <Button variant="contained" component="span" sx={{ m: 1 }} onClick={handleSearch}>

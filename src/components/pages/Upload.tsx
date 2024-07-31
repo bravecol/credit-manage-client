@@ -14,6 +14,15 @@ import { GridColDef } from '@mui/x-data-grid';
 import { useState } from 'react';
 import { CustomDataGrid } from '../atoms/grid/CustomDataGrid';
 
+interface UploadSearchCondition {
+  /** カード名 */
+  cardName: string;
+  /** アップロード日 */
+  uploadDate: string;
+  /** 支払日 */
+  dueDate: string;
+}
+
 /**
  * 明細アップロード画面
  * @author col
