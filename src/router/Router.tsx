@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Top } from '../components/pages/Top';
-// import { Users } from '../components/pages/Users';
 import { DefaultLayout } from '../components/templates/DefaultLayout';
 import { HeaderOnly } from '../components/templates/HeaderOnly';
 import { Box } from '@mui/material';
 import { Upload } from '../components/pages/Upload';
+import { UsedDetailManage } from '../components/pages/UsedDetailManage';
 
 /**
  * ルーティング(画面遷移)設定
@@ -32,11 +32,10 @@ export const Router: React.FC = () => {
           }
         />
         <Route
-          path="/search"
+          path="/manage"
           element={
             <HeaderOnly>
-              {/* TODO:実装予定 */}
-              <Box>検索画面</Box>
+              <UsedDetailManage />
             </HeaderOnly>
           }
         />

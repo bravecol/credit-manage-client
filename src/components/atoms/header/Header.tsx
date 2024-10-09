@@ -4,8 +4,9 @@ import styled from '@emotion/styled';
 export const Header: React.FC = () => {
   return (
     <SHeader>
-      <SLink to="/">HOME</SLink>
-      <SLink to="/users">USERS</SLink>
+      <SLink to="/">ホーム</SLink>
+      <SLink to="/upload">アップロード</SLink>
+      <SLink to="/manage">利用明細管理</SLink>
     </SHeader>
   );
 };
